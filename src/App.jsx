@@ -1,86 +1,113 @@
 import { useEffect, useState } from "react";
+import appImage from "./assets/app.jpg";
 
 const rawQuestions = [
   {
-    question: "Which part of the plant is responsible for photosynthesis?",
-    options: ["Root", "Stem", "Leaf", "Flower"],
-    answer: "Leaf",
+    question: "What is the main function of red blood cells?",
+    options: ["Fight infection", "Clot blood", "Carry oxygen", "Produce hormones"],
+    answer: "Carry oxygen",
   },
   {
-    question: "What is the basic unit of life?",
-    options: ["Organ", "Tissue", "Cell", "Nucleus"],
-    answer: "Cell",
+    question: "Where does digestion of proteins begin in the body?",
+    options: ["Mouth", "Stomach", "Small intestine", "Large intestine"],
+    answer: "Stomach",
   },
   {
-    question: "Which gas do plants absorb during photosynthesis?",
-    options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
-    answer: "Carbon dioxide",
+    question: "Which organ controls most automatic body functions like breathing and heart rate?",
+    options: ["Cerebrum", "Spinal cord", "Medulla oblongata", "Cerebellum"],
+    answer: "Medulla oblongata",
   },
   {
-    question: "What organ in the human body is responsible for pumping blood?",
-    options: ["Lungs", "Liver", "Heart", "Kidneys"],
-    answer: "Heart",
+    question: "What nutrient is most responsible for building and repairing tissues?",
+    options: ["Carbohydrates", "Fats", "Proteins", "Vitamins"],
+    answer: "Proteins",
   },
   {
-    question: "Which vitamin is produced when your skin is exposed to sunlight?",
-    options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
-    answer: "Vitamin D",
+    question: "Which mineral helps in forming strong bones and teeth?",
+    options: ["Iron", "Iodine", "Calcium", "Zinc"],
+    answer: "Calcium",
   },
   {
-    question: "Which part of the cell contains genetic material?",
-    options: ["Mitochondria", "Nucleus", "Cytoplasm", "Ribosome"],
-    answer: "Nucleus",
+    question: "Which blood vessels carry blood away from the heart?",
+    options: ["Veins", "Arteries", "Capillaries", "Venules"],
+    answer: "Arteries",
   },
   {
-    question: "What type of blood cells help fight infection?",
-    options: ["Red blood cells", "Platelets", "White blood cells", "Plasma"],
-    answer: "White blood cells",
-  },
-  {
-    question: "Which organ is responsible for filtering waste from the blood?",
-    options: ["Heart", "Liver", "Kidney", "Lungs"],
+    question: "Which organ is responsible for filtering blood and forming urine?",
+    options: ["Liver", "Heart", "Kidney", "Lungs"],
     answer: "Kidney",
   },
   {
-    question: "What is the process by which plants make their food?",
-    options: ["Respiration", "Transpiration", "Digestion", "Photosynthesis"],
-    answer: "Photosynthesis",
+    question: "Which part of the digestive system absorbs most nutrients?",
+    options: ["Stomach", "Large intestine", "Small intestine", "Esophagus"],
+    answer: "Small intestine",
   },
   {
-    question: "Which part of the neuron receives signals?",
-    options: ["Axon", "Dendrite", "Myelin", "Synapse"],
-    answer: "Dendrite",
+    question: "What is the largest organ in the human body?",
+    options: ["Liver", "Skin", "Brain", "Lung"],
+    answer: "Skin",
   },
   {
-    question: "What is the powerhouse of the cell?",
-    options: ["Nucleus", "Chloroplast", "Mitochondria", "Vacuole"],
+    question: "Which vitamin helps with vision in low light?",
+    options: ["Vitamin C", "Vitamin D", "Vitamin A", "Vitamin K"],
+    answer: "Vitamin A",
+  },
+  {
+    question: "What part of the brain is responsible for balance and coordination?",
+    options: ["Cerebellum", "Hypothalamus", "Medulla", "Frontal lobe"],
+    answer: "Cerebellum",
+  },
+  {
+    question: "Which type of joint is found in the shoulder and hip?",
+    options: ["Hinge joint", "Pivot joint", "Ball and socket joint", "Gliding joint"],
+    answer: "Ball and socket joint",
+  },
+  {
+    question: "What type of blood cell helps fight infection?",
+    options: ["Platelets", "Red blood cells", "White blood cells", "Plasma"],
+    answer: "White blood cells",
+  },
+  {
+    question: "Which nutrient is the body's main source of energy?",
+    options: ["Protein", "Carbohydrates", "Fats", "Vitamins"],
+    answer: "Carbohydrates",
+  },
+  {
+    question: "What is the name of the muscular tube that connects the throat to the stomach?",
+    options: ["Trachea", "Esophagus", "Pharynx", "Bronchus"],
+    answer: "Esophagus",
+  },
+  {
+    question: "Which vitamin deficiency impairs calcium absorption and can lead to osteomalacia in adults?",
+    options: ["Vitamin C", "Vitamin A", "Vitamin D", "Vitamin K"],
+    answer: "Vitamin D",
+  },
+  {
+    question: "Which cellular organelle is responsible for ATP production through oxidative phosphorylation?",
+    options: ["Endoplasmic reticulum", "Mitochondria", "Peroxisome", "Lysosome"],
     answer: "Mitochondria",
   },
   {
-    question: "Which blood type is known as the universal donor?",
-    options: ["A", "B", "O", "AB"],
-    answer: "O",
+    question: "A person with which blood type can donate to all ABO blood groups?",
+    options: ["AB+", "O+", "O−", "A−"],
+    answer: "O−",
   },
   {
-    question: "Which molecule carries genetic information?",
-    options: ["RNA", "DNA", "Protein", "Glucose"],
-    answer: "DNA",
+    question: "Which molecule carries the genetic code from the nucleus to the ribosome?",
+    options: ["DNA", "mRNA", "tRNA", "rRNA"],
+    answer: "mRNA",
   },
   {
-    question: "How many chromosomes are in a human body cell?",
-    options: ["23", "46", "22", "44"],
-    answer: "46",
-  },
-  {
-    question: "Which process involves the splitting of glucose to release energy?",
-    options: ["Photosynthesis", "Respiration", "Osmosis", "Transpiration"],
-    answer: "Respiration",
+    question: "During aerobic respiration, which molecule is the final electron acceptor in the electron transport chain?",
+    options: ["Carbon dioxide", "Water", "NADH", "Oxygen"],
+    answer: "Oxygen",
   },
 ];
 
 function App() {
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const [selected, setSelected] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
@@ -148,8 +175,35 @@ function App() {
   if (questions.length === 0) return <p className="p-6">Loading...</p>;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-green-100 p-6">
+    <div
+    className="min-h-screen flex flex-col items-center justify-center p-6"
+    style={{
+      backgroundImage: `url(${appImage})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    }}
+  >
+    {!hasStarted ? (
+      <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-md w-full">
+        <h1 className="text-4xl font-extrabold mb-4 text-green-700">
+           Welcome to <span className="italic">BioFusion IQ</span>
+        </h1>
+        <p className="mb-6 text-gray-700">
+          Where intelligence meets the science of life.
+        </p>
+        <button
+          onClick={() => setHasStarted(true)}
+          className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+        >
+          Start Quiz
+        </button>
+      </div>
+    ) : questions.length === 0 ? (
+      <p className="p-6 text-white">Loading...</p>
+    ) : (
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md text-center">
+    
         {!isQuizFinished ? (
           <>
             <div className="flex justify-between items-center mb-4">
@@ -222,6 +276,7 @@ function App() {
           </>
         )}
       </div>
+    )}
     </div>
   );
 }
